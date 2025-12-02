@@ -1,4 +1,4 @@
-name: Build & Deploy Docker to EC2
+name: Build & Deploy Docker to EC2 (ARM64)
 
 on:
   push:
@@ -12,6 +12,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up QEMU (for ARM builds)
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
@@ -19,13 +25,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Docker image
-        run: |
-          docker build -t ghcr.io/${{ github.repository }}/app:latest .
-
-      - name: Push image
-        run: |
-          docker push ghcr.io/${{ github.repository }}/app:latest
+      - name: Build and push ARM64 image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          # Build for ARM64 because your EC2 AMI is ubuntu-jammy-22.04-arm64
+          platforms: linux/arm64
+          tags: ghcr.io/${{ github.repository }}/app:latest
 
   deploy:
     needs: build
@@ -35,17 +42,20 @@ jobs:
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
 
       - name: Deploy on EC2
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+            # Pull latest ARM64 image
             docker pull ghcr.io/${{ github.repository }}/app:latest
 
+            # Stop old container if exists
             docker stop myapp || true
             docker rm myapp || true
 
+            # Run new container on port 80 -> 3000
             docker run -d \
               --name myapp \
               -p 80:3000 \
