@@ -4,7 +4,7 @@ This project demonstrates a **production-ready, cost-optimized CI/CD pipeline** 
 
 - **Docker** for containerized deployments  
 - **GitHub Actions** for automated CI/CD  
-- **AWS EC2 (t3.micro / t4g.micro)** as the deployment server  
+- **AWS EC2 (4g.micro)** as the deployment server  
 - **GitHub Container Registry (GHCR)** for image storage  
 
 The goal is to build, push, and deploy applications to EC2 **automatically on every push to `main`**, with minimal cost and maximum reliability.
