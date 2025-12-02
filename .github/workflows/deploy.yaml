@@ -28,7 +28,8 @@ jobs:
       - name: Build and push ARM64 image
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./app
+          file: ./app/Dockerfile
           push: true
           # Build for ARM64 because your EC2 AMI is ubuntu-jammy-22.04-arm64
           platforms: linux/arm64
