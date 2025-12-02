@@ -44,3 +44,30 @@ The app is deployed and running on AWS EC2:
 | **SSH Key Authentication** | Secure connection for CD |
 
 ---
+
+
+flowchart LR
+  A["Developer pushes code to GitHub repo (main)"] --> B["GitHub Actions CI/CD Workflow (deploy.yml)"]
+  B --> C["Build & Test Job
+- Checkout code
+- Build ARM64 Docker image
+- Push to GHCR"]
+  C --> D["GitHub Container Registry (ghcr.io)"]
+  D --> E["Deploy Job
+- SSH to EC2 using EC2_SSH_KEY
+- docker pull image
+- docker stop/rm myapp
+- docker run -d myapp"]
+  E --> F["AWS EC2 Instance (Ubuntu ARM64, Docker)"]
+  F --> G["Running Container: myapp (port 3000 → 80)"]
+  G --> H["User Browser
+http://EC2-Public-IP/"]
+
+  B -.-> I["GitHub Secrets
+EC2_HOST
+EC2_USER
+EC2_SSH_KEY
+GHCR_USERNAME
+GHCR_TOKEN"]
+  I -.-> E
+
