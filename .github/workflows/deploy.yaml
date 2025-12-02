@@ -34,8 +34,8 @@ jobs:
       - name: Build and push ARM64 image
         uses: docker/build-push-action@v5
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./app
+          file: ./app/Dockerfile
           push: true
           platforms: linux/arm64
           tags: ghcr.io/${{ secrets.GHCR_USERNAME }}/ec2-cicd:latest
