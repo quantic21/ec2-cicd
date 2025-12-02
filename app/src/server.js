@@ -7,7 +7,7 @@ app.get('/health', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Hello from ECS Fargate + GitHub Actions!' });
+  res.json({ message: 'Hello from EC2 + Docker + GitHub Actions!' });
 });
 
 app.listen(PORT, () => {
