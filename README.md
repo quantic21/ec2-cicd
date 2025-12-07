@@ -15,7 +15,7 @@ The goal is to build, push, and deploy applications to EC2 **automatically on ev
 
 The app is deployed and running on AWS EC2:
 
-👉 **Live Link:** http://3.90.136.170/
+👉 **Live Link:** http://50.16.62.244/
 
 (Deployed automatically via GitHub Actions CI/CD)
 
@@ -28,7 +28,15 @@ The app is deployed and running on AWS EC2:
 - 🔐 Secure SSH-based deployment to EC2
 - 🚀 Auto-pull & restart container on EC2
 - ♻️ `--restart always` ensures app stays up 24×7
-- 💰 **Cost optimized** (~₹600–750/month on AWS if on t3.micro)
+- 💰 **Cost optimized** (~₹300-350/month on AWS without free-tier)
+- ⏱️ **Automated EC2 scheduling** using EventBridge + SSM
+→ Instance starts automatically at 10:00 AM IST
+→ Instance stops automatically at 11:00 PM IST
+→ Saves runtime costs while keeping daily availability
+-🌐 **Elastic IP attached**
+→ Public IP never changes, even when EC2 stops/starts
+→ Live link stays constant
+→ CI/CD deployments always target the same server
 
 ---
 
