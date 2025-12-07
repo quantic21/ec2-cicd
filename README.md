@@ -33,7 +33,7 @@ The app is deployed and running on AWS EC2:
 → Instance starts automatically at 10:00 AM IST
 → Instance stops automatically at 11:00 PM IST
 → Saves runtime costs while keeping daily availability
--🌐 **Elastic IP attached**
+- 🌐 **Elastic IP attached**
 → Public IP never changes, even when EC2 stops/starts
 → Live link stays constant
 → CI/CD deployments always target the same server
@@ -54,6 +54,7 @@ The app is deployed and running on AWS EC2:
 | **AWS EC2 (Ubuntu)** | Runs the application container |
 | **Docker Engine** | Executes the app inside a container |
 | **SSH Key Authentication** | Secure connection for CD |
-
+| **Elastic IP** | Provides a permanent static IP for the app |
+| **EventBridge + SSM Automation** | Automatically starts/stops the instance daily |
 ---
 
