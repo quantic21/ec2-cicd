@@ -1,9 +1,7 @@
 // server.js — minimal + safe improvements
 'use strict';
-
 const express = require('express');
 const cors = require('cors');
-
 const app = express();
 
 // Config
@@ -94,7 +92,7 @@ const gracefulShutdown = () => {
     console.log('HTTP server closed, exiting process.');
     process.exit(0);
   });
-
+  
   // force exit after 10s
   setTimeout(() => {
     console.warn('Forcing shutdown after timeout.');
