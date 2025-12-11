@@ -85,7 +85,7 @@ const server = app.listen(PORT, () => {
 
 // Graceful shutdown handler
 const gracefulShutdown = () => {
-  console.log('Graceful shutdown triggered, closing server...');
+  console.log('Graceful shutdown triggered, closing server..');
   server.close((err) => {
     if (err) {
       console.error('Error while closing HTTP server:', err);
