@@ -6,8 +6,8 @@ const app = express();
 
 // Config
 const PORT = parseInt(process.env.PORT || '3000', 10);
-const APP_NAME = process.env.APP_NAME || 'my-node';
-const APP_VERSION = process.env.APP_VERSION || '1.2.1';
+const APP_NAME = process.env.APP_NAME || 'my-node-app';
+const APP_VERSION = process.env.APP_VERSION || '1.2.2';
 const ENABLE_CORS = process.env.ENABLE_CORS === 'true';
 
 // Middleware

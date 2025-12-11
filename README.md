@@ -1,5 +1,11 @@
 # 🚀 Cost-Optimized CI/CD Pipeline with Docker, GitHub Actions & AWS EC2
 
+## Summary
+
+Includes automated CI/CD (GitHub Actions → Docker → GHCR → EC2), automated EC2 scheduling (10:00–23:00 IST via EventBridge + SSM), and a stable public endpoint via Elastic IP for reliable deployments and a low monthly cost footprint.
+
+---
+
 This project demonstrates a **production-ready, cost-optimized CI/CD pipeline** using:
 
 - **Docker** for containerized deployments  
