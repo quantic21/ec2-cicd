@@ -19,10 +19,6 @@ The goal is to build, push, and deploy applications to EC2 **automatically on ev
 
 ## 🌐 Live Deployment
 
-The app is deployed and running on AWS EC2:
-
-👉 **Live Link:** http://50.16.62.244/
-
 (Deployed automatically via GitHub Actions CI/CD)
 
 ---
